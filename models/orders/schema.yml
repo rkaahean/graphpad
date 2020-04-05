@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: orders_subscirption_purchase_and_renewal
+    description: "A starter dbt model"
