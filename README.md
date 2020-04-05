@@ -15,6 +15,8 @@ views created by dbt will have no grants. Will need to grant permissions on the 
 GRANT SELECT ON ALL VIEWS IN SCHEMA "GRAPHPAD_DB"."DBT_PHIL" TO ROLE PERISCOPE_ROLE;
 ```
 
+https://support.snowflake.net/s/article/faq-why-cant-roles-access-new-tables-in-a-schema
+
 ### Resources:
 
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/overview)
