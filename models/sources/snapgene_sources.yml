@@ -1,0 +1,17 @@
+# Describes SnapGene raw data
+
+version: 2
+
+sources:
+  - name: sg_product
+    schema: public
+    tables:
+      - name: regcodes
+        description: Contains all SnapGene registration codes
+        columns:
+          - name: regcode
+            description: Registration code
+          - name: labtype
+            description: Academic or Commercial
+      - name: sg_handshakes
+        description: Contains all SnapGene "phone home" data

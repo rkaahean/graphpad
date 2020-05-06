@@ -17,6 +17,8 @@ GRANT SELECT ON ALL VIEWS IN SCHEMA "GRAPHPAD_DB"."DBT_PHIL" TO ROLE PERISCOPE_R
 
 https://support.snowflake.net/s/article/faq-why-cant-roles-access-new-tables-in-a-schema
 
+Ralph: Not sure if this helps: https://docs.getdbt.com/docs/building-a-dbt-project/building-models/snowflake-configs#copying-grants
+
 ### Resources:
 
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/overview)
