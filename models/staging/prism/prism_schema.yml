@@ -1,0 +1,24 @@
+version: 2
+
+
+sources:
+  - name: prism
+    database: graphpad_db
+    schema: public
+
+    tables:
+      - name: customers
+        loaded_at_field: METADATA_TIMESTAMP
+        columns:
+          - name: customer_id
+
+
+models:
+  - name: stg_prism_customers
+    description: "A sanitation of the customers table for prism. Added a customer_key."
+    columns:
+        - name: id
+          description: Generated id from the base table
+          tests:
+            - unique
+            - not null
