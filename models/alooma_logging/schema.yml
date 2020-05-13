@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: orders_log
+    description: "save all data from orders_log table"
