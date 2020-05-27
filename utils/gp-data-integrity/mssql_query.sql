@@ -1,0 +1,93 @@
+set nocount on;
+
+DECLARE @XML AS XML
+SET @XML = (select
+	CURRENT_TIMESTAMP as LOADED_AT,
+	ORDERNUMBER as ORDERNUMBER,
+	 coalesce(ORDERDATE,CAST('1900-01-01 00:00:00.000' AS datetime) )  as ORDERDATE,
+	 coalesce(SHIPDATE,CAST('1900-01-01 00:00:00.000' AS datetime) ) as SHIPDATE,
+	 coalesce(FIRSTNAME,'') as FIRSTNAME,	
+	 coalesce(LASTNAME,'') as LASTNAME,	
+	 coalesce(COMPANY,'') as COMPANY,	
+	 coalesce(ADDRESS1,'') as ADDRESS1,	
+	 coalesce(ADDRESS2,'') as ADDRESS2,	
+	 coalesce(CITY,'') as CITY,	
+	 coalesce(STATE,'') as STATE,
+	 coalesce(ZIP,'') as ZIP,	
+	 coalesce(COUNTRY,'') as COUNTRY,	
+	 coalesce(PHONE,'') as PHONE,	
+	 coalesce(FAX,'') as FAX,	
+	 coalesce(EMAIL,'') as EMAIL,	
+	 coalesce(CCTYPE,'') as CCTYPE,
+	 coalesce(CCNAME,'') as CCNAME,	
+	 coalesce(CCNUMBER,'') as CCNUMBER,	
+	 coalesce(EXPDATE,'') as EXPDATE,	
+	 coalesce(AUTHCODE,'') as AUTHCODE,	
+	 coalesce(TOTALCHARGED,null) as TOTALCHARGED,	
+	 coalesce(ISSERIALNUMBERGENERATIONPENDING,null) as ISSERIALNUMBERGENERATIONPENDING,	
+	 coalesce(ISSERIALNUMBERGENERATIONENABLED,null) as ISSERIALNUMBERGENERATIONENABLED,	
+	 coalesce(CYBERCASHID,'') as CYBERCASHID,	
+	 coalesce(STATUS,'') as STATUS,	
+	 coalesce(S_COMPANY,'') as S_COMPANY,	
+	 coalesce(S_ADDRESS1,'') as S_ADDRESS1,	
+	 coalesce(S_ADDRESS2,'') as S_ADDRESS2,	
+	 coalesce(S_CITY,'') as S_CITY,	
+	 coalesce(S_STATE,'') as S_STATE,	
+	 coalesce(S_ZIP,'') as S_ZIP,	
+	 coalesce(S_COUNTRYID,null) as S_COUNTRYID,	
+     coalesce(S_PHONE,'') as S_PHONE,	
+	 coalesce(SHIPPINGCHARGES,null) as SHIPPINGCHARGES,	
+	 coalesce(WEIGHT,null) as WEIGHT,	
+	 coalesce(CUSTOMERID,null) as CUSTOMERID,	
+	 coalesce(COUNTRYID,null) as COUNTRYID,
+	 coalesce(ADDRESS3,'') as ADDRESS3,	
+	 coalesce(S_ADDRESS3,'') as S_ADDRESS3,	
+	 --coalesce(NOTES,'') as NOTES,
+	 coalesce(ORDERTYPEID,null) as ORDERTYPEID, 	
+	 coalesce(SALESTAXRATE,null) as SALESTAXRATE,	
+	 coalesce(SALESTAXAMOUNT,null) as SALESTAXAMOUNT,
+	 coalesce(BALANCE,null) as BALANCE,
+	 coalesce(PO_NUMBER,'') as PO_NUMBER,
+	 coalesce(SHIPPINGTYPEID,null) as SHIPPINGTYPEID,
+	 coalesce(ISRESIDENTIAL,null) as ISRESIDENTIAL, 
+	 coalesce(SHIPPINGNOTES,'') as SHIPPINGNOTES,
+	 coalesce(S_ATTN,'') as S_ATTN,
+	 coalesce(ATTN,'') as ATTN,
+	 coalesce(SHIPPINGBATCHID,null) as SHIPPINGBATCHID,
+	 coalesce(S_COMPANYID,null) as S_COMPANYID,
+	 coalesce(COMPANYID,null) as COMPANYID,
+	 coalesce(INVOICENUMBER,'') as INVOICENUMBER,
+	 coalesce(CREATEDBY,'') as CREATEDBY,
+	 coalesce(ORDEREDBY,'') as ORDEREDBY,
+	 coalesce(ISADVANCEDNETWORKORDER,null) as ISADVANCEDNETWORKORDER,
+	 coalesce(RETURNTYPEID,null) as RETURNTYPEID,
+	 coalesce(STATEMENTID,null) as STATEMENTID,
+	 coalesce(S_COUNTY,'') as S_COUNTY,
+	 coalesce(ORIG_ORDERNUMBER,null) as ORIG_ORDERNUMBER,
+	 coalesce(DOWNLOADNOTIFICATIONEMAIL,'') as DOWNLOADNOTIFICATIONEMAIL,
+	 coalesce(ISPRINTINVOICEENABLED,null) as ISPRINTINVOICEENABLED,
+	 coalesce(SHIPPINGPRIORITY,null) as SHIPPINGPRIORITY,
+	 coalesce(ISSINGLECOPY,null) as ISSINGLECOPY,
+	 coalesce(PLATFORMTYPES,'') as PLATFORMTYPES,
+	 coalesce(ISFREEUPGRADEORDER,null) as ISFREEUPGRADEORDER,
+	 coalesce(B_EMAIL,'') as B_EMAIL,
+	 coalesce(S_PO_NUMBER,'') as S_PO_NUMBER,
+	 coalesce(ISINVOICEPRINTED,null) as ISINVOICEPRINTED,
+	 coalesce(RENEWEDSUBSCRIPTIONID ,null) as RENEWEDSUBSCRIPTIONID,
+	 coalesce(SUBSCRIPTIONID,null) as SUBSCRIPTIONID,
+	 coalesce(EXTERNALINVOICENUMBER,'') as EXTERNALINVOICENUMBER,
+	null as ORDERCATEGOTYID,
+	coalesce(ORDERDATE,CAST('1900-01-01 00:00:00.000' AS datetime) ) as DATECREATED,
+	coalesce(ORDERDATE,CAST('1900-01-01 00:00:00.000' AS datetime) ) as DATEMODIFIED
+from orders
+where 
+--orderNumber = 1327457
+orderDate >= dateadd(DAY, datediff(day,0,CONVERT(DATETIME, '$(rundate)', 102)),0) 
+and orderDate < dateadd(DAY, datediff(day,0,CONVERT(DATETIME, '$(rundate)', 102)),0) + 1
+FOR XML AUTO, ELEMENTS, ROOT('FULL_ORDERS')
+);
+
+
+select CAST(@XML AS NVARCHAR(MAX));
+
+
