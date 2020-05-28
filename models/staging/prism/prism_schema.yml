@@ -24,15 +24,10 @@ models:
     columns:
         - name: id
           description: Generated id from the base table
-          tests:
-            - unique
-            - not null
+
 
   - name: stg_prism_products
     description: "A sanitation of the products table for prism. Added a product_key."
     columns:
         - name: id
           description: Generated id from the base table
-          tests:
-            - unique
-            - not null

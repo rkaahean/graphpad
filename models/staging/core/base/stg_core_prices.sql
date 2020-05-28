@@ -1,7 +1,7 @@
 {{
   config(
     materialized = "view",
-  
+
     tags = ["prices"]
   )
 }}
@@ -16,7 +16,8 @@ from {{ source('core','prices')}}
 
 sanitation as
 (
-  authCode as auth_code
+  SELECT
+  authCode as authcode
   ,endQty as end_qty
   ,isActive as is_active
   ,isActiveInternal as is_active_internal

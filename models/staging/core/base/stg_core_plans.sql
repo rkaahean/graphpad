@@ -1,7 +1,7 @@
 {{
   config(
     materialized = "view",
-  
+
     tags = ["plans"]
   )
 }}
@@ -27,7 +27,7 @@ brandID as brand_id
 ,planIntervalUnit as plan_interval_unit
 ,status
 ,type
-, case when s.status = 'active' then TRUE else FALSE end as is_active
+, case when status = 'active' then TRUE else FALSE end as is_active
 
 from source
 

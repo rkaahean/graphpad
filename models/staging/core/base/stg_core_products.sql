@@ -1,7 +1,7 @@
 {{
   config(
     materialized = "view",
-  
+
     tags = ["products"]
   )
 }}
@@ -37,6 +37,10 @@ brandID as brand_id
 ,type
 ,weight
 ,WinMac as win_mac
+-- Add a seat category field extracted from the name
+,try_to_numeric(split_part(split_part(name,'(',2),')',1)) as seat_category
+--
+, split_part(name,' (',1) as product_name_abbrev
 
 from source
 
