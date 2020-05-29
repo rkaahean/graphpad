@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: date_details
+  - name: dim_date
     description: Join on this table to add additional date complexity
     columns:
       - name: date_day
