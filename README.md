@@ -7,6 +7,14 @@ Try running the following commands:
 - dbt run
 - dbt test
 
+### Packages
+
+- dbt_utils
+
+### Install packages
+
+Run `dbt deps`
+
 ### Notes
 
 views created by dbt will have no grants. Will need to grant permissions on the views (after every build)
