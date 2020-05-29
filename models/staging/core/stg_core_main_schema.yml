@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: stg_core_product_brand_detail
+    description: "Intermediate table the joins brand detail to the products table."

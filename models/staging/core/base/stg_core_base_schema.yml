@@ -1,0 +1,45 @@
+version: 2
+
+
+sources:
+  - name: core
+    database: IS_DW_RAW
+    schema: GP_MSSQL
+
+    tables:
+      - name: prices
+        loaded_at_field: METADATA_TIMESTAMP
+
+      - name: coupons
+        loaded_at_field: METADATA_TIMESTAMP
+
+      - name: products
+        loaded_at_field: METADATA_TIMESTAMP
+
+      - name: plans
+        loaded_at_field: METADATA_TIMESTAMP
+      
+      - name: brands
+        loaded_at_field: METADATA_TIMESTAMP
+
+
+
+
+models:
+  - name: stg_core_products
+    description: "A sanitation of the products table."
+
+  - name: stg_core_brands
+    description: "A sanitation of the brands table."
+
+
+  - name: stg_core_prices
+    description: "A sanitation of the prices table."
+
+
+  - name: stg_core_coupons
+    description: "A sanitation of the coupons table."
+
+
+  - name: stg_core_plans
+    description: "A sanitation of the plans table."

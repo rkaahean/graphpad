@@ -1,0 +1,33 @@
+version: 2
+
+
+sources:
+  - name: prism
+    database: IS_DW_RAW
+    schema: GP_MSSQL
+
+    tables:
+      - name: customers
+        loaded_at_field: METADATA_TIMESTAMP
+
+      - name: companies
+        loaded_at_field: METADATA_TIMESTAMP
+
+      - name: products
+        loaded_at_field: METADATA_TIMESTAMP
+
+
+
+models:
+  - name: stg_prism_customers
+    description: "A sanitation of the customers table for prism. Added a customer_key."
+    columns:
+        - name: id
+          description: Generated id from the base table
+
+
+  - name: stg_prism_products
+    description: "A sanitation of the products table for prism. Added a product_key."
+    columns:
+        - name: id
+          description: Generated id from the base table
