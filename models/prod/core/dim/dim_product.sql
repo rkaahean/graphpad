@@ -27,6 +27,7 @@ product_id
 , brand_id
 , brand_name
 , seat_category_range
+, is_perpetual_upgrade
 
 FROM
 {{ ref('stg_core_product_brand_detail')}}

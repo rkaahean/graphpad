@@ -29,7 +29,7 @@ brandID as brand_id
 ,isNetworkEnabled as is_network_enabled
 ,isShippingRequired as is_shipping_required
 ,isSubscription as is_subscription
-,isUpgrade as is_upgrade
+,isUpgrade as is_perpetual_upgrade
 ,isUpgradeEnabled as is_upgrade_enabled
 ,name as product_name
 ,productID as product_id
