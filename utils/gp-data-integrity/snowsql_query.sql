@@ -1,7 +1,4 @@
-create file format if not exists xml_file_format type = 'XML'  IGNORE_UTF8_ERRORS = TRUE;
-create stage if not exists data_integrity_checks_xml_stage file_format = xml_file_format;
 
---put file://C:\Users\Olga\Documents\checks\check_orders_full_table\run_xml\&{file_name} @data_integrity_checks_xml_stage auto_compress=true;
 put file://&{path_to_file}/&{file_name} @data_integrity_checks_xml_stage auto_compress=true;
 
 
@@ -102,7 +99,7 @@ reporting_date < date_trunc('day', dateadd('day',1,to_date('&{rundate}'))) and r
 
 create temporary table TEMP_RAW_ORDERS_DATA as
 select *
-from graphpad_db.dbt_olha.orders_raw_data
+from orders_raw_data
 where orderDate::timestamp_ntz < date_trunc('day', dateadd('day',1,to_date('&{rundate}'))) and orderDate::timestamp_ntz >= date_trunc('day', to_date('&{rundate}'));
 
 create temporary table TEMP_STITCH_ORDERS_DATA as
