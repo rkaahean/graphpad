@@ -1,3 +1,5 @@
+{{ config(schema='public') }}
+
 WITH date_spine AS (
 
   {{ dbt_utils.date_spine(
